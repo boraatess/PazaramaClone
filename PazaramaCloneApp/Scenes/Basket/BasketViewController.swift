@@ -100,7 +100,6 @@ class BasketViewController: BaseViewController<BasketViewModel> {
         confirmBasketButton.addTarget(self, action: #selector(confirmButtonClicked), for: .touchUpInside)
         cleanAll.addTarget(self, action: #selector(cleanAllClicked), for: .touchUpInside)
         
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -110,34 +109,31 @@ class BasketViewController: BaseViewController<BasketViewModel> {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-
-    }
-    
     @objc func backArrowClicked() {
-        
         self.popVC()
-        
     }
     
     @objc func cleanAllClicked() {
-        
-        self.productItems.forEach { item in
-            
-            CoreDataManager.shared.deleteItem(item: item)
-            
-        }
-        
-        viewModel.fetchDatas()
+        deleteAllAlert(title: "Uyarı", message: "Tüm ürünleri silmek istiyor musunuz?")
     }
-    
     
     @objc func confirmButtonClicked() {
   
         Utils.shared.showPopup(title: "Uyarı", message: "Henüz hazır değil. geliştirilmeye devam ediliyor", view: self)
+    }
+    
+    func deleteAllAlert(title: String, message: String ) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
+        let yesAction = UIAlertAction(title: "Evet", style: .default) { action in
+            self.viewModel.deleteAllItems(with: self.productItems)
+        }
+        
+        let cancel = UIAlertAction(title: "İptal", style: .destructive)
+        alert.addAction(yesAction)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true)
     }
     
 }

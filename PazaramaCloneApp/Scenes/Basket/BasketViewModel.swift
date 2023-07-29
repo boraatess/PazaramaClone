@@ -51,6 +51,15 @@ class BasketViewModel: BasketViewModelInput {
         
         CoreDataManager.shared.deleteItem(item: product)
         fetchDatas()
+    }
+    
+    func deleteAllItems(with products: [ProductListItem]) {
+        
+        products.forEach { item in
+            CoreDataManager.shared.deleteItem(item: item)
+        }
+        
+        fetchDatas()
         
     }
     
