@@ -234,7 +234,7 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 240
         
     }
     
@@ -249,7 +249,7 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
             
             let product = self.productItems[indexPath.row]
             
-            self.viewModel.deleteSelectedItem(with: product)
+            self.showAlert(title: "Uyarı", message: "Bu ürünü silmek istiyor musunuz?", product: product)
             
             completionHandler(true)
             
@@ -260,6 +260,22 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         return configuration
         
+    }
+    
+    func showAlert(title: String, message: String, product: ProductListItem ) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Evet", style: .default) { action in
+            self.viewModel.deleteSelectedItem(with: product)
+        }
+        
+        let cancel = UIAlertAction(title: "İptal", style: .destructive)
+        
+        alert.addAction(yesAction)
+        alert.addAction(cancel)
+        
+        
+        self.present(alert, animated: true)
     }
     
 }
