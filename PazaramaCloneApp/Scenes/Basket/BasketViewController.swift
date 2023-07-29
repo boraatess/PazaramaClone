@@ -18,9 +18,10 @@ class BasketViewController: BaseViewController<BasketViewModel> {
     
     private let cleanAll: UIButton = {
         let button = UIButton()
-        button.setTitle("Tümünü Sil", for: .normal)
+        button.setTitle("Sepeti Temizle", for: .normal)
         button.setTitleColor(.systemRed, for: .normal)
         button.backgroundColor = .white
+        button.titleLabel?.numberOfLines = 0
         return button
     }()
     
@@ -158,8 +159,8 @@ extension BasketViewController {
         view.addSubview(cleanAll)
         cleanAll.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide).offset(20)
-            make.trailing.equalToSuperview().inset(20)
-            make.width.equalTo(100)
+            make.trailing.equalToSuperview().inset(10)
+            make.width.equalTo(150)
             make.height.equalTo(20)
         }
         
@@ -210,7 +211,6 @@ extension BasketViewController {
 
         }
         
-        
     }
     
 }
@@ -234,12 +234,31 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300
+        return 200
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Sil") { _, _, completionHandler in
+            
+            let product = self.productItems[indexPath.row]
+            
+            self.viewModel.deleteSelectedItem(with: product)
+            
+            completionHandler(true)
+            
+        }
+        
+        deleteAction.backgroundColor = .systemRed
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
         
     }
     

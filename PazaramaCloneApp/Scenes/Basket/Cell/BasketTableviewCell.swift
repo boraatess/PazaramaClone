@@ -116,7 +116,7 @@ class BasketTableviewCell: UITableViewCell {
         
         containerView.addSubview(splitView)
         splitView.snp.makeConstraints { make in
-            make.top.equalTo(self.productName.snp.bottom).offset(20)
+            make.top.equalTo(self.productName.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().inset(10)
             make.height.equalTo(2)
@@ -124,7 +124,7 @@ class BasketTableviewCell: UITableViewCell {
         
         containerView.addSubview(productImage)
         productImage.snp.makeConstraints { make in
-            make.top.equalTo(self.splitView.snp.bottom).offset(20)
+            make.top.equalTo(self.splitView.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(20)
             make.height.equalTo(80)
             make.width.equalTo(80)
@@ -133,10 +133,9 @@ class BasketTableviewCell: UITableViewCell {
         
         containerView.addSubview(productDesc)
         productDesc.snp.makeConstraints { make in
-            make.top.equalTo(self.splitView.snp.bottom).offset(30)
+            make.top.equalTo(self.splitView.snp.bottom).offset(20)
             make.leading.equalTo(self.productImage.snp.trailing).offset(20)
             make.trailing.equalToSuperview()
-
         }
         
         containerView.addSubview(productPrice)
@@ -145,6 +144,7 @@ class BasketTableviewCell: UITableViewCell {
             make.leading.equalTo(self.productImage.snp.trailing).offset(20)
             make.trailing.equalToSuperview()
         }
+        
         
         
         
