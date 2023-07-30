@@ -38,13 +38,31 @@ class BasketViewModel: BasketViewModelInput {
         var total = 0
         
         products.forEach { prod in
-            let price = Int(prod.price ?? "")
-            total += price ?? 0
+            let price = Int(prod.price ?? "") ?? 0
+            // totalPrice += Int(item.price * Double(item.quantity))
+            
+            total += price * Int(prod.quantity)
+            
         }
         
         let formattedPrice = Utils.shared.formatPrice(price: Double(total)) ?? ""
         
         self.outputDelegate?.configureTotalPrice(with: formattedPrice)
+    }
+    
+    func productPlusQuantity(with product: ProductListItem) {
+        CoreDataManager.shared.plusProductQuantity(product: product)
+        
+        fetchDatas()
+        
+    }
+    
+    func productMinusQuantity(with product: ProductListItem) {
+        
+        CoreDataManager.shared.minusProductQuantity(product: product)
+        
+        fetchDatas()
+        
     }
     
     func deleteSelectedItem(with product: ProductListItem) {

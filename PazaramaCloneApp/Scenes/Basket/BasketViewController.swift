@@ -47,8 +47,7 @@ class BasketViewController: BaseViewController<BasketViewModel> {
         tableview.delegate = self
         tableview.dataSource = self
         tableview.register(BasketTableviewCell.self, forCellReuseIdentifier: "basketCell")
-        tableview.layer.masksToBounds = true
-
+        
         return tableview
     }()
     
@@ -224,8 +223,10 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
         let model = self.productItems[indexPath.row]
         
         cell.configure(with: model)
-        
-        
+        cell.selectionStyle = .none
+        cell.isUserInteractionEnabled = true
+        cell.contentView.isUserInteractionEnabled = true
+        cell.delegate = self
         return cell
     }
     
@@ -272,6 +273,29 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         self.present(alert, animated: true)
+    }
+    
+}
+
+extension BasketViewController: BasketTableviewCellDelegate {
+    
+    func decrimentAction() {
+        
+        viewModel.fetchDatas()
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func incrementAction() {
+        
+        viewModel.fetchDatas()
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
     }
     
 }

@@ -148,9 +148,7 @@ extension ProductDetailViewController {
         
         let width = screen.width - 20
         scrollView.contentSize.width = width
-        
-        let height = screen.height * 1.5
-        
+                
         view.addSubview(backArrow)
         backArrow.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide).offset(20)

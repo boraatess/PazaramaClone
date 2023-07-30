@@ -20,6 +20,9 @@ extension ProductListItem {
     @NSManaged public var price: String?
     @NSManaged public var imageUrl: String?
     @NSManaged public var productDesc: String?
+    @NSManaged public var quantity: Int16
+    @NSManaged public var productID: String?
+
 
 }
 

@@ -71,12 +71,6 @@ final class HomeViewModel: HomeViewModelInput {
       
     }
     
-    
-    func readDataByChild() {
-        
-        
-    }
-    
     func writeDatasToDB() {
         
         for i in 0...9 {
@@ -94,7 +88,6 @@ final class HomeViewModel: HomeViewModelInput {
             demoObject.description = "Bershka uzun elbise"
             demoObject.longDescription = Constants.description
             demoObject.images = ["image url 1", "image url 2", "image url 3"]
-            
             
             reference.child(String(i)).setValue(demoObject.toDict)
 
