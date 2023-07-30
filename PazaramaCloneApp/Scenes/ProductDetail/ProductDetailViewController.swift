@@ -125,7 +125,7 @@ class ProductDetailViewController: BaseViewController<ProductDetailViewModel> {
     }
     
     func configureUI() {
-      //  self.productImages = productResponse?.images ?? []
+        
         guard let response =  self.productResponse else { return }
         self.productImages = response.images
         

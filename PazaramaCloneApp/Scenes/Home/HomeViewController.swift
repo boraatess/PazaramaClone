@@ -67,9 +67,7 @@ class HomeViewController: BaseViewController<HomeViewModel> {
     }()
     
     var productsArray: [ProductResponse] = []
-    
     var filteredArray: [ProductResponse] = []
-    
     
     override init(with viewModel: HomeViewModel) {
         super.init(with: viewModel)
@@ -79,7 +77,6 @@ class HomeViewController: BaseViewController<HomeViewModel> {
     
     required init?(coder: NSCoder) {
         fatalError()
-        
     }
     
     override func viewDidLoad() {
@@ -102,7 +99,6 @@ class HomeViewController: BaseViewController<HomeViewModel> {
         let vc = BasketViewController(with: .init())
         vc.navigationController?.navigationBar.isHidden = true
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
 }
@@ -152,7 +148,6 @@ extension HomeViewController {
             make.leading.equalToSuperview().offset(15)
             make.width.equalTo(16)
             make.height.equalTo(16)
-            
         }
         
         searchView.addSubview(searchTextField)
@@ -161,7 +156,6 @@ extension HomeViewController {
             make.leading.equalTo(self.iconSearch.snp.trailing).offset(20)
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(5)
-            
         }
         
         view.addSubview(collectionView)
@@ -170,12 +164,8 @@ extension HomeViewController {
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
-            
         }
         
-        topView.addShadow()
-        
-
     }
     
 }
@@ -196,14 +186,11 @@ extension HomeViewController: UITextFieldDelegate {
      
      func filterDataForSearchText(_ searchText: String) {
          if searchText.isEmpty {
-             // If the search text is empty, show all original data
              filteredArray = productsArray
          } else {
-             // Filter the data based on the search text
              filteredArray = productsArray.filter { $0.name.lowercased().contains(searchText.lowercased()) }
          }
          
-         // Reload the collection view to display the filtered results
          collectionView.reloadData()
      }
     
@@ -214,12 +201,9 @@ extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let response = self.filteredArray[indexPath.row]
-        
         let vc = ProductDetailViewController(with: .init())
         vc.productResponse = response
-        
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
 }
 
@@ -230,17 +214,12 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCollectionViewCell
         
         let response = filteredArray[indexPath.row]
-        
         cell.configureCell(with: response)
-        
         cell.delegate = self
-        
         return cell
-        
     }
     
 }
@@ -261,11 +240,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 extension HomeViewController: ProductCollectionViewCellDelegate {
     
     func productAddedtoBasket(with product: ProductResponse) {
-        
         CoreDataManager.shared.createItem(with: product)
-        
         Utils.shared.showPopup(title: "", message: "ürün sepete eklendi", view: self)
-
     }
     
 }
@@ -275,7 +251,6 @@ extension HomeViewController: HomeViewModelOutput {
     func configureProducts(with products: [ProductResponse]) {
         print("home products : \(products)")
         self.productsArray = products
-        
         filteredArray = productsArray
 
         DispatchQueue.main.async {
@@ -283,6 +258,5 @@ extension HomeViewController: HomeViewModelOutput {
             
         }
     }
-    
     
 }

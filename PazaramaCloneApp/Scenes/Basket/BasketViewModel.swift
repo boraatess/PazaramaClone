@@ -39,14 +39,10 @@ class BasketViewModel: BasketViewModelInput {
         
         products.forEach { prod in
             let price = Int(prod.price ?? "") ?? 0
-            // totalPrice += Int(item.price * Double(item.quantity))
             
             total += price * Int(prod.quantity)
-            
         }
-        
         let formattedPrice = Utils.shared.formatPrice(price: Double(total)) ?? ""
-        
         self.outputDelegate?.configureTotalPrice(with: formattedPrice)
     }
     

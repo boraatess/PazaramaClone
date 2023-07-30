@@ -20,14 +20,12 @@ class ProductCollectionViewCell: UICollectionViewCell {
         view.layer.cornerRadius = 8
         view.layer.borderWidth = 2
         view.layer.borderColor = UIColor.systemGray5.cgColor
-        
         return view
     }()
     
     private let productImage: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
-        
         return iv
     }()
     
@@ -44,7 +42,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 16)
         label.numberOfLines = 0
         label.textColor = .black
-
         return label
     }()
     
@@ -53,7 +50,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
         label.font = .boldSystemFont(ofSize: 16)
         label.numberOfLines = 0
         label.textColor = .black
-        
         return label
     }()
     
@@ -68,9 +64,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }()
     
     var productResult: ProductResponse?
-    
     weak var delegate: ProductCollectionViewCellDelegate?
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,7 +75,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError()
-        
     }
     
     @objc func addBasketClicked() {
@@ -100,9 +93,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         descriptionLabel.text = response.description
         
         let urlString = response.imageUrl
-        
         productImage.kf.setImage(with: URL(string: urlString))
-        
     }
     
     func layout() {

@@ -36,12 +36,6 @@ class FeaturesCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError()
-        
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
     }
     
     func layout() {
@@ -49,14 +43,12 @@ class FeaturesCell: UITableViewCell {
         featureName.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.leading.equalToSuperview().offset(10)
-            
         }
         
         addSubview(featureValue)
         featureValue.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().inset(10)
-            
         }
         
     }
@@ -64,7 +56,6 @@ class FeaturesCell: UITableViewCell {
     func configure(with viewModel: FeaturesViewModel) {
         featureName.text = viewModel.name
         featureValue.text = viewModel.value
-        
     }
     
 }

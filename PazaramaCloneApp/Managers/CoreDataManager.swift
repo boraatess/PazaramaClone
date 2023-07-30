@@ -103,17 +103,5 @@ class CoreDataManager {
         
     }
     
-    func updateItem(item : ProductListItem) {
-        
-        do {
-            
-        }
-        catch {
-            
-            print("error...")
-        }
-        
-    }
-    
     
 }

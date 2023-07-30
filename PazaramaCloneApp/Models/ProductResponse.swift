@@ -17,7 +17,6 @@ struct ProductResponse: Codable {
     let images: [String]
     let price: String
     let features: Features
-    
 }
 
 struct Features: Codable {
@@ -25,17 +24,3 @@ struct Features: Codable {
     let armType: String
     let patternName: String
 }
-
-
-/* struct Job {
- let number: Int
- let name, client: String
-}
-extension Job: Codable {
- init(dictionary: [String: Any]) throws {
-     self = try JSONDecoder().decode(Job.self, from: JSONSerialization.data(withJSONObject: dictionary))
- }
- private enum CodingKeys: String, CodingKey {
-     case number = "jobNumber", name = "jobName", client
- }
-}*/

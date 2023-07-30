@@ -55,7 +55,6 @@
 		331C809E2A73EFFA00FAA039 /* CustomScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C809D2A73EFFA00FAA039 /* CustomScroll.swift */; };
 		33A9B13D2A75CB7900E7B11E /* ProductCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9B13C2A75CB7900E7B11E /* ProductCounterView.swift */; };
 		33A9B1412A766EF100E7B11E /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9B1402A766EF100E7B11E /* HomeViewModelTests.swift */; };
-		33A9B1682A7707FE00E7B11E /* example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9B1672A7707FE00E7B11E /* example.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,7 +120,6 @@
 		331C809D2A73EFFA00FAA039 /* CustomScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScroll.swift; sourceTree = "<group>"; };
 		33A9B13C2A75CB7900E7B11E /* ProductCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCounterView.swift; sourceTree = "<group>"; };
 		33A9B1402A766EF100E7B11E /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
-		33A9B1672A7707FE00E7B11E /* example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = example.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,7 +375,6 @@
 			isa = PBXGroup;
 			children = (
 				331C80192A7344AF00FAA039 /* CoreDataManager.swift */,
-				33A9B1672A7707FE00E7B11E /* example.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -610,7 +607,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33A9B1682A7707FE00E7B11E /* example.swift in Sources */,
 				331C7FCE2A71197E00FAA039 /* ContentSizedCollectionView.swift in Sources */,
 				331C809E2A73EFFA00FAA039 /* CustomScroll.swift in Sources */,
 				331C7FF22A72EF4600FAA039 /* Constants.swift in Sources */,

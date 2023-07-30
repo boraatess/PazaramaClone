@@ -22,7 +22,6 @@ class BasketTableviewCell: UITableViewCell {
         view.layer.borderColor = UIColor.systemGray.cgColor
         view.layer.borderWidth = 2
         view.layer.cornerRadius = 10
-        
         return view
     }()
     
@@ -31,14 +30,12 @@ class BasketTableviewCell: UITableViewCell {
         label.textColor = .black
         label.font = .boldSystemFont(ofSize: 16)
         label.numberOfLines = 0
-        
         return label
     }()
     
     private let splitView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
-        
         return view
     }()
     
@@ -46,7 +43,6 @@ class BasketTableviewCell: UITableViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         image.layer.cornerRadius = 8
-        
         return image
     }()
     
@@ -55,7 +51,6 @@ class BasketTableviewCell: UITableViewCell {
         label.textColor = .black
         label.font = .boldSystemFont(ofSize: 16)
         label.numberOfLines = 0
-        
         return label
     }()
     
@@ -64,7 +59,6 @@ class BasketTableviewCell: UITableViewCell {
         label.textColor = .black
         label.font = .boldSystemFont(ofSize: 16)
         label.numberOfLines = 0
-        
         return label
     }()
     
@@ -83,6 +77,7 @@ class BasketTableviewCell: UITableViewCell {
         label.font = .boldSystemFont(ofSize: 16)
         label.numberOfLines = 0
         label.text = "1"
+        label.textAlignment = .center
         return label
     }()
     
@@ -101,8 +96,6 @@ class BasketTableviewCell: UITableViewCell {
         view.layer.cornerRadius = 8
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.systemGray5.cgColor
-        
-        
         return view
     }()
     
@@ -116,33 +109,24 @@ class BasketTableviewCell: UITableViewCell {
         button.backgroundColor = .blue
         button.isUserInteractionEnabled = true
         button.clipsToBounds = true
-        
         return button
     }()
     
     var productItem: ProductListItem?
-    
     weak var delegate: BasketTableviewCellDelegate?
-    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.isUserInteractionEnabled = true
-        
         layout()
-        
         minusButton.addTarget(self, action: #selector(minusClicked), for: .touchUpInside)
         plusButton.addTarget(self, action: #selector(plusClicked), for: .touchUpInside)
-        
         testButton.addTarget(self, action: #selector(plusClicked), for: .touchUpInside)
-        
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError()
-        
     }
     
     @objc func minusClicked() {
@@ -157,7 +141,6 @@ class BasketTableviewCell: UITableViewCell {
         }
         
         delegate?.decrimentAction()
-        
     }
     
     @objc func plusClicked() {
@@ -165,33 +148,20 @@ class BasketTableviewCell: UITableViewCell {
         guard let productListItem = self.productItem else { return }
 
         CoreDataManager.shared.plusProductQuantity(product: productListItem)
-        
         delegate?.incrementAction()
-        
     }
     
     func configure(with model: ProductListItem ) {
-        
         self.productItem = model
-        
-        
         let name = model.name ?? ""
         let desc = model.productDesc ?? ""
-
         productName.text = name
-        
         let urlString = model.imageUrl ?? ""
-        
         productImage.kf.setImage(with: URL(string: urlString))
-        
         productDesc.text =  desc
-        
         let formattedPrice = Utils.shared.formatPrice(price: Double(model.price ?? "") ?? 0 )
-        
         productPrice.text = formattedPrice
-        
         productCount.text = String(model.quantity )
-        
     }
     
     func layout() {
@@ -242,10 +212,7 @@ class BasketTableviewCell: UITableViewCell {
             make.leading.equalTo(self.productImage.snp.trailing).offset(20)
             make.trailing.equalToSuperview()
         }
-        
-       // plusAndMinusView.delegate = sel
-        
-        
+
         containerView.addSubview(plusAndMinusView)
         plusAndMinusView.snp.makeConstraints { make in
             make.top.equalTo(self.productPrice.snp.bottom).offset(20)
@@ -266,17 +233,16 @@ class BasketTableviewCell: UITableViewCell {
         plusAndMinusView.addSubview(productCount)
         productCount.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalTo(self.minusButton.snp.trailing).offset(5)
+            make.leading.equalTo(self.minusButton.snp.trailing)
             make.bottom.equalToSuperview()
-            make.width.equalTo(30)
+            make.width.equalTo(50)
             make.height.equalTo(30)
-
         }
         
         plusAndMinusView.addSubview(plusButton)
         plusButton.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalTo(self.productCount.snp.trailing).offset(15)
+            make.leading.equalTo(self.productCount.snp.trailing)
             make.bottom.equalToSuperview()
             make.width.equalTo(50)
             make.height.equalTo(30)
@@ -284,79 +250,6 @@ class BasketTableviewCell: UITableViewCell {
             
         }
         
-        
-        /*
-         
-         containerView.addSubview(plusAndMinusView)
-         plusAndMinusView.snp.makeConstraints { make in
-             make.top.equalTo(self.productPrice.snp.bottom).offset(20)
-             make.leading.equalTo(self.productImage.snp.trailing).offset(20)
-             make.width.equalTo(150)
-             make.height.equalTo(50)
-         }
-             
-         
-         containerView.addSubview(minusButton)
-         minusButton.snp.makeConstraints { make in
-             make.top.equalTo(self.productPrice.snp.bottom).offset(10)
-             make.leading.equalTo(self.productImage.snp.trailing).offset(20)
-             make.bottom.equalToSuperview()
-             make.height.equalTo(70)
-             make.width.equalTo(30)
-         }
-         
-        plusAndMinusView.addSubview(minusButton)
-        minusButton.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.height.equalTo(70)
-            make.width.equalTo(30)
-        }
-        
-        plusAndMinusView.addSubview(productCount)
-        productCount.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalTo(self.minusButton.snp.trailing).offset(15)
-            make.bottom.equalToSuperview()
-            make.width.equalTo(40)
-            make.height.equalTo(40)
-
-        }
-        
-        plusAndMinusView.addSubview(plusButton)
-        plusButton.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalTo(self.productCount.snp.trailing).offset(15)
-            make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.width.equalTo(70)
-            make.height.equalTo(40)
-
-        }
-        */
-        
-        
     }
-    
-    
-}
-
-extension BasketTableviewCell: ProductCounterViewDelegate {
-    
-    
-    func minusButtonAction() {
-        print("minus Clicked")
-
-    }
-    
-    func plusButtonAction() {
-        print("plus Clicked")
-
-        
-    }
-    
-    
-    
     
 }

@@ -32,19 +32,13 @@ class DescriptionCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         layout()
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError()
         
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-    }
-    
+
     func layout() {
         
         addSubview(titleLabel)
@@ -59,8 +53,6 @@ class DescriptionCell: UITableViewCell {
             make.top.equalTo(self.titleLabel.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview()
-            
-            
         }
         
     }
