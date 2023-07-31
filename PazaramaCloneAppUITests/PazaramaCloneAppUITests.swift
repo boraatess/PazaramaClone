@@ -30,6 +30,25 @@ final class PazaramaCloneAppUITests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
+    func testCart() {
+        
+        let app = XCUIApplication()
+        app.launch()
+        app/*@START_MENU_TOKEN@*/.collectionViews.containing(.other, identifier:"Vertical scroll bar, 2 pages")/*[[".scrollViews",".collectionViews.containing(.other, identifier:\"Horizontal scroll bar, 2 pages\")",".collectionViews.containing(.other, identifier:\"Vertical scroll bar, 2 pages\")"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.cells.otherElements.containing(.staticText, identifier:"Women dresses").buttons["sepete ekle"].tap()
+        app/*@START_MENU_TOKEN@*/.collectionViews/*[[".scrollViews.collectionViews",".collectionViews"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.cells.otherElements.containing(.staticText, identifier:"Womens dress").element.tap()
+        app.buttons["sepete ekle"].tap()
+        app.navigationBars["Pazarama.ProductDetailView"].buttons["Back"].tap()
+        
+        let table = app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .table).element
+        table.swipeDown()
+        app.tables.staticTexts["Women dresses"].swipeDown()
+        
+        table.swipeDown()
+        app.buttons["Sepeti Onayla"].tap()
+        app.alerts["Sepeti Onayla"].scrollViews.otherElements.buttons["Yes"].tap()
+                
+    }
+    
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.

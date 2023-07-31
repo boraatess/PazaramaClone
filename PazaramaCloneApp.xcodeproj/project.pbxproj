@@ -433,7 +433,6 @@
 			isa = PBXGroup;
 			children = (
 				33A9B13F2A766EAF00E7B11E /* Home */,
-				33A9B1422A7673AD00E7B11E /* ProductDetail */,
 				33A9B1432A7673B400E7B11E /* Basket */,
 			);
 			path = Scenes;
@@ -445,13 +444,6 @@
 				33A9B1402A766EF100E7B11E /* HomeViewModelTests.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		33A9B1422A7673AD00E7B11E /* ProductDetail */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ProductDetail;
 			sourceTree = "<group>";
 		};
 		33A9B1432A7673B400E7B11E /* Basket */ = {

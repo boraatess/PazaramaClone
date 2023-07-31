@@ -26,6 +26,12 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     func test_fetch_homeProducts() {
+
+        XCTAssertNil(viewModel.productsArray)
+        
+        viewModel.fetchDatas()
+        
+        XCTAssertNotNil(viewModel.productsArray)
         
         
     }
